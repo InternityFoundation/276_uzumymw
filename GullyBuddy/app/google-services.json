@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "937712075199",
+    "firebase_url": "https://starternity-hacks.firebaseio.com",
+    "project_id": "starternity-hacks",
+    "storage_bucket": "starternity-hacks.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:937712075199:android:5f0950c5bfa6c4d009610a",
+        "android_client_info": {
+          "package_name": "com.example.vmac.chatbot"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "937712075199-a0sl1i4logjs1u1qtn1d97n1kl915o8i.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.vmac.chatbot",
+            "certificate_hash": "fbc4f91917b2b5061fe857fd10067f126956abea"
+          }
+        },
+        {
+          "client_id": "937712075199-03tqpbfjoageu7i3mffcv3q2mrv5cpbi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAg_7DIS1noRCegb_cfFY_hLiJKHOl3J58"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "937712075199-03tqpbfjoageu7i3mffcv3q2mrv5cpbi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
