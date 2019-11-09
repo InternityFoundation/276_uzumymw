@@ -28,6 +28,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".Route_select" />
+        <activity android:name=".CurrentLocation" />
         <activity android:name=".Assistant_select" />
         <activity android:name=".Login">
             <intent-filter>
