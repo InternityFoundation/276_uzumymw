@@ -72,7 +72,7 @@ public class Login extends AppCompatActivity {
                 try {
                     FileWriter file = new FileWriter("/data/data/" + getApplicationContext().getPackageName() + "/" + "text1.txt");
                     //file.write(obj.toJSONString());
-                    file.write(friendNumber);
+                    file.write(friendNumber + " " + friendName + " " + sname);
                     file.flush();
                     file.close();
                 } catch (IOException e) {

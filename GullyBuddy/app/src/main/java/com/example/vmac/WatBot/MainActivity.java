@@ -314,13 +314,18 @@ public class MainActivity extends AppCompatActivity {
                 is.read(buffer);
                 is.close();
                 String phoneNumber = new String(buffer);
+                String[] arr=phoneNumber.split(" ");
+                Log.d("rishi" , arr[0]);
+                  Log.d("rishi" , arr[1]);
+                  Log.d("rishi" , arr[2]);
+
 
 
 
                 //Log.d("rishi","this is"+phoneNumber);
                 //Location currentLocation=new Location("");
                 SmsManager smsManager1 = SmsManager.getDefault();
-                String uri="http://maps.google.com?q=28.4592881,77.0721857";
+                String uri="http://maps.google.com//?q=28.4592881"+','+"77.0721857";
                 StringBuffer smsBody = new StringBuffer();
                 //smsBody.append("http://maps.google.com?q=28.4592881,77.0721857");
                 // smsBody.append(currentLocation.getLatitude());
@@ -337,7 +342,7 @@ public class MainActivity extends AppCompatActivity {
                 SmsManager smsManager = SmsManager.getDefault();
 
 
-                smsManager.sendTextMessage("+91" + phoneNumber, null, "Hey! I am at risk. Help me. I am at  "+smsBody, null, null);
+                smsManager.sendTextMessage("+91" + phoneNumber, null, arr[1]+"!!\nThis is "+arr[2]+" here.\nI am at risk! Please Help me. I am at  "+smsBody, null, null);
 
               } catch (IOException e) {
                 // TODO Auto-generated catch block
