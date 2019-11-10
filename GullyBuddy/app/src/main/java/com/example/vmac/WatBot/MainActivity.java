@@ -299,8 +299,8 @@ public class MainActivity extends AppCompatActivity {
             {
              /*   Twilio.init(mContext.getString(R.string.sid), mContext.getString(R.string.auth));
                com.twilio.rest.api.v2010.account.Message message = com.twilio.rest.api.v2010.account.Message.creator(
-                        new PhoneNumber("+918527129869"),
-                        new PhoneNumber("+918527129869"),
+                        new PhoneNumber(""),
+                        new PhoneNumber(""),
                         "Hey! Testing TwilioClass Messaging").create();
                 System.out.println(message.getSid());
                 */
