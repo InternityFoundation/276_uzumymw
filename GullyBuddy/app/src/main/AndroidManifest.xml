@@ -28,7 +28,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".Route_select" />
-        <activity android:name=".CurrentLocation" />
         <activity android:name=".Assistant_select" />
         <activity android:name=".Login">
             <intent-filter>
@@ -44,6 +43,10 @@
             android:name=".SplashActivity"
             android:screenOrientation="portrait"
             android:theme="@style/SplashTheme" />
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/map_key"/>
     </application>
 
 </manifest>
