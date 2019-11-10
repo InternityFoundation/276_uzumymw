@@ -327,7 +327,7 @@ public class MainActivity extends AppCompatActivity {
                 SmsManager smsManager = SmsManager.getDefault();
 
 
-                smsManager.sendTextMessage("+91" + phoneNumber, null, "Hey! I am at risk. Help me. "+smsBody, null, null);
+                smsManager.sendTextMessage("+91" + phoneNumber, null, "Hey! I am at risk. Help me. I am at  "+smsBody, null, null);
 
               } catch (IOException e) {
                 // TODO Auto-generated catch block
