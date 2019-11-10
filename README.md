@@ -4,6 +4,9 @@
 ## Introduction
 Gully Buddy is an end to end solution aimed to tackle all the safety concerns while commuting. 
 
+## Pitch Deck
+
+<a href="https://my.visme.co/projects/1jr1gmzp-nightknight#s1">The Link of the pitch Deck.</a>
 
 ### Getting Started
 
