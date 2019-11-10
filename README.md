@@ -20,6 +20,6 @@ Make sure your system has the following installed
 1. Fork The Project.
 2. Clone it locally in your PC.
 3. Import the project in the Android Studio.
-4. Setup the IBM Watson APIs in the IBM Cloud platform and enter the credentials in 'Strings' file in 'res' folder.
+4. Setup the IBM Watson APIs in the IBM Cloud platform and enter the credentials in *configfile* in *res/values* folder.
 5. Setup the Firebase database.
 6. Set up the AVD or your phone in Developer Mode and run the application.
