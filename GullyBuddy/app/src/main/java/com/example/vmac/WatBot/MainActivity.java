@@ -47,6 +47,11 @@ import com.ibm.watson.developer_cloud.text_to_speech.v1.model.SynthesizeOptions;
 import com.twilio.Twilio;
 import com.twilio.type.PhoneNumber;
 
+import org.json.simple.JSONObject;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 
@@ -55,6 +60,8 @@ import static com.twilio.example.Example.AUTH_TOKEN;
 
 
 public class MainActivity extends AppCompatActivity {
+
+
 
 
   private RecyclerView recyclerView;
@@ -127,7 +134,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     int permission = ContextCompat.checkSelfPermission(this,
-      Manifest.permission.RECORD_AUDIO);
+            Manifest.permission.RECORD_AUDIO);
 
     if (permission != PackageManager.PERMISSION_GRANTED) {
       Log.i(TAG, "Permission to record denied");
@@ -140,7 +147,7 @@ public class MainActivity extends AppCompatActivity {
     recyclerView.addOnItemTouchListener(new RecyclerTouchListener(getApplicationContext(), recyclerView, new ClickListener() {
       @Override
       public void onClick(View view, final int position) {
-          Message audioMessage = (Message) messageArrayList.get(position);
+        Message audioMessage = (Message) messageArrayList.get(position);
         if (audioMessage != null && !audioMessage.getMessage().isEmpty()) {
           new SayTask().execute(audioMessage.getMessage());
         }
@@ -150,7 +157,7 @@ public class MainActivity extends AppCompatActivity {
       public void onLongClick(View view, int position) {
         listening = false;
 
-          recordMessage();
+        recordMessage();
 
       }
     }));
@@ -167,8 +174,8 @@ public class MainActivity extends AppCompatActivity {
     btnRecord.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
-          listening = false;
-          recordMessage();
+        listening = false;
+        recordMessage();
       }
     });
     createServices();
@@ -188,8 +195,8 @@ public class MainActivity extends AppCompatActivity {
       case RECORD_REQUEST_CODE: {
 
         if (grantResults.length == 0
-          || grantResults[0] !=
-          PackageManager.PERMISSION_GRANTED) {
+                || grantResults[0] !=
+                PackageManager.PERMISSION_GRANTED) {
 
           Log.i(TAG, "Permission has been denied by user");
         } else {
@@ -210,8 +217,8 @@ public class MainActivity extends AppCompatActivity {
 
   protected void makeRequest() {
     ActivityCompat.requestPermissions(this,
-      new String[]{Manifest.permission.RECORD_AUDIO},
-      MicrophoneHelper.REQUEST_PERMISSION);
+            new String[]{Manifest.permission.RECORD_AUDIO},
+            MicrophoneHelper.REQUEST_PERMISSION);
   }
 
   // Sending a message to Watson Assistant Service
@@ -224,7 +231,7 @@ public class MainActivity extends AppCompatActivity {
       inputMessage.setId("1");
       messageArrayList.add(inputMessage);
     } else {
-        Message inputMessage = new Message();
+      Message inputMessage = new Message();
       inputMessage.setMessage(inputmessage);
       inputMessage.setId("100");
       this.initialRequest = false;
@@ -244,20 +251,20 @@ public class MainActivity extends AppCompatActivity {
           }
 
           MessageInput input = new MessageInput.Builder()
-            .text(inputmessage)
-            .build();
+                  .text(inputmessage)
+                  .build();
           MessageOptions options = new MessageOptions.Builder()
-            .assistantId(mContext.getString(R.string.ass_id))
-            .input(input)
-            .sessionId(watsonAssistantSession.getSessionId())
-            .build();
+                  .assistantId(mContext.getString(R.string.ass_id))
+                  .input(input)
+                  .sessionId(watsonAssistantSession.getSessionId())
+                  .build();
           MessageResponse response = watsonAssistant.message(options).execute();
-            Log.i(TAG, "run: "+response);
+          Log.i(TAG, "run: "+response);
           final Message outMessage = new Message();
           if (response != null &&
-            response.getOutput() != null &&
-            !response.getOutput().getGeneric().isEmpty() &&
-            "text".equals(response.getOutput().getGeneric().get(0).getResponseType()))
+                  response.getOutput() != null &&
+                  !response.getOutput().getGeneric().isEmpty() &&
+                  "text".equals(response.getOutput().getGeneric().get(0).getResponseType()))
           {
             outMessage.setMessage(response.getOutput().getGeneric().get(0).getText());
             outMessage.setId("2");
@@ -280,21 +287,53 @@ public class MainActivity extends AppCompatActivity {
 
             if(response.getOutput().getGeneric().get(0).getText().equals("Helps on the way! Contacting authorities."))
             {
-//                Twilio.init(mContext.getString(R.string.sid), mContext.getString(R.string.auth));
-//                com.twilio.rest.api.v2010.account.Message message = com.twilio.rest.api.v2010.account.Message.creator(
-//                        new PhoneNumber("+13234493775"),
-//                        new PhoneNumber("+12133207439"),
-//                        "Hey! Testing TwilioClass Messaging").create();
-//                System.out.println(message.getSid());
+             /*   Twilio.init(mContext.getString(R.string.sid), mContext.getString(R.string.auth));
+               com.twilio.rest.api.v2010.account.Message message = com.twilio.rest.api.v2010.account.Message.creator(
+                        new PhoneNumber("+918527129869"),
+                        new PhoneNumber("+918527129869"),
+                        "Hey! Testing TwilioClass Messaging").create();
+                System.out.println(message.getSid());
+                */
 
-                String dial = "tel:" + "8527129869";
+
+              try {
+                File f = new File("/data/data/" + getPackageName() + "/" + "text1.txt");
+                FileInputStream is = new FileInputStream(f);
+                int size = is.available();
+                byte[] buffer = new byte[size];
+                is.read(buffer);
+                is.close();
+                String phoneNumber = new String(buffer);
+
+
+
+                //Log.d("rishi","this is"+phoneNumber);
+                //Location currentLocation=new Location("");
+                SmsManager smsManager1 = SmsManager.getDefault();
+                String uri="http://maps.google.com?q=28.4592881,77.0721857";
+                StringBuffer smsBody = new StringBuffer();
+                //smsBody.append("http://maps.google.com?q=28.4592881,77.0721857");
+                // smsBody.append(currentLocation.getLatitude());
+                //smsBody.append(",");
+                // smsBody.append(currentLocation.getLongitude());
+                smsBody.append(Uri.parse(uri));
+                smsManager1.sendTextMessage("+91"+ phoneNumber, null, smsBody.toString(), null, null);
+
+
+                String dial = "tel:" + "+91" + phoneNumber ;
                 startActivity(new Intent(Intent.ACTION_DIAL, Uri.parse(dial)));
 
 
                 SmsManager smsManager = SmsManager.getDefault();
 
 
-                smsManager.sendTextMessage("8527129869", null, "Hey! I am at risk. Help me. I was last at 475 Via Ortega, Stanford, CA 94305 ", null, null);
+                smsManager.sendTextMessage("+91" + phoneNumber, null, "Hey! I am at risk. Help me. "+smsBody, null, null);
+
+              } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+              }
+
             }
           }
         } catch (Exception e) {
@@ -311,10 +350,10 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected String doInBackground(String... params) {
       streamPlayer.playStream(textToSpeech.synthesize(new SynthesizeOptions.Builder()
-        .text(params[0])
-        .voice(SynthesizeOptions.Voice.EN_US_LISAVOICE)
-        .accept(SynthesizeOptions.Accept.AUDIO_WAV)
-        .build()).execute());
+              .text(params[0])
+              .voice(SynthesizeOptions.Voice.EN_US_LISAVOICE)
+              .accept(SynthesizeOptions.Accept.AUDIO_WAV)
+              .build()).execute());
       return "Did synthesize";
     }
   }
@@ -327,8 +366,8 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void run() {
           try {
-              if(capture!= null)
-            speechService.recognizeUsingWebSocket(getRecognizeOptions(capture), new MicrophoneRecognizeDelegate());
+            if(capture!= null)
+              speechService.recognizeUsingWebSocket(getRecognizeOptions(capture), new MicrophoneRecognizeDelegate());
           } catch (Exception e) {
             showError(e);
           }
@@ -357,11 +396,11 @@ public class MainActivity extends AppCompatActivity {
   private boolean checkInternetConnection() {
     // get Connectivity Manager object to check connection
     ConnectivityManager cm =
-      (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+            (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
 
     NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
     boolean isConnected = activeNetwork != null &&
-      activeNetwork.isConnectedOrConnecting();
+            activeNetwork.isConnectedOrConnecting();
 
     // Check for network connections
     if (isConnected) {
@@ -376,19 +415,19 @@ public class MainActivity extends AppCompatActivity {
   //Private Methods - Speech to Text
   private RecognizeOptions getRecognizeOptions(InputStream audio) {
     return new RecognizeOptions.Builder()
-      .audio(audio)
-      .contentType(ContentType.OPUS.toString())
-      .model("en-US_BroadbandModel")
-      .interimResults(true)
-      .inactivityTimeout(2000)
-      .build();
+            .audio(audio)
+            .contentType(ContentType.OPUS.toString())
+            .model("en-US_BroadbandModel")
+            .interimResults(true)
+            .inactivityTimeout(2000)
+            .build();
   }
 
   //Watson Speech to Text Methods.
   private class MicrophoneRecognizeDelegate extends BaseRecognizeCallback {
     @Override
     public void onTranscription(SpeechRecognitionResults speechResults) {
-        System.out.print("here");
+      System.out.print("here");
       if (speechResults.getResults() != null && !speechResults.getResults().isEmpty()) {
         String text = speechResults.getResults().get(0).getAlternatives().get(0).getTranscript();
         showMicText(text);
