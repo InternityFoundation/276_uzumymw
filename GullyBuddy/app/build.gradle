@@ -59,6 +59,7 @@ dependencies {
 
     implementation 'com.google.android.gms:play-services-location:10.0.1'
     implementation fileTree(dir: 'C:\\Users\\rhnsaxena\\Documents\\GitHub\\Startenity\\276_uzumymw\\GullyBuddy\\libs', include: ['*.aar', '*.jar'], exclude: [])
+    implementation fileTree(dir: 'C:\\Users\\Rakshak\\Documents\\GitHub\\276_uzumymw\\GullyBuddy\\libs', include: ['*.aar', '*.jar'], exclude: [])
 }
 
 configurations.all {
