@@ -7,7 +7,7 @@ Gully Buddy is an end to end solution aimed to tackle all the safety concerns wh
 
 ### Getting Started
 
-#### Dependecies
+#### Dependencies
 Make sure your system has the following installed
 1. Java SDK
 2. Android Studio 
