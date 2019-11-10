@@ -105,8 +105,18 @@ public class MainActivity extends AppCompatActivity {
     speechService.setEndPoint(mContext.getString(R.string.STT_url));
   }
 
+  String fileName = "text1.txt";
+  public boolean isFilePresent() {
+    File file = new File("/data/data/" + getApplicationContext().getPackageName() + "/" + "text1.txt");
+    return file.exists();
+  }
+
+
   @Override
   protected void onCreate(Bundle savedInstanceState) {
+    //TODO:
+
+
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
 
@@ -317,7 +327,7 @@ public class MainActivity extends AppCompatActivity {
                 //smsBody.append(",");
                 // smsBody.append(currentLocation.getLongitude());
                 smsBody.append(Uri.parse(uri));
-                smsManager1.sendTextMessage("+91"+ phoneNumber, null, smsBody.toString(), null, null);
+                //smsManager1.sendTextMessage("+91"+ phoneNumber, null, smsBody.toString(), null, null);
 
 
                 String dial = "tel:" + "+91" + phoneNumber ;

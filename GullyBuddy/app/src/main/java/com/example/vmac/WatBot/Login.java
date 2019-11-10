@@ -7,6 +7,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+
+import java.io.File;
 import java.lang.*;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -30,10 +32,12 @@ public class Login extends AppCompatActivity {
             editTextFname , editTextFnumber ;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
+
         setContentView(R.layout.activity_login);
 
         editTextName = findViewById(R.id.input_name);
